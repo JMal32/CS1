@@ -11,7 +11,7 @@ def main():
         for i in range(1, 11):
             guess = getPat()
             b, w = scorePat(guess, mypat)
-            #print(f"Your score for this guess is: {b} b's and {w} w's")
+            print(f"Your score for this guess is: {b} b's and {w} w's")
             total_b += b
             total_w += w
             print(f"Your overall score so far is: {total_b} b's and {total_w} w's")
