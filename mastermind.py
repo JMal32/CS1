@@ -12,10 +12,10 @@ def main():
         for i in range(1, 11):
             guess = getPat()
             b, w = scorePat(guess, mypat)
-            #print(f"Your score for this guess is: {b} b's and {w} w's")
-            print(f"Your overall score so far is: {total_b} b's and {total_w} w's")
+            print(f"Your score for this guess is: {b} b's and {w} w's")
             total_b += b
             total_w += w
+            print(f"Your overall score so far is: {total_b} b's and {total_w} w's")
 
             if b == 4:
                 print("You won! My pattern was:", mypat)
@@ -47,13 +47,7 @@ def getPat():
             print("Error: Invalid input. Please enter four digits.")
 
 # Function to compare the guess with the code and provide feedback
-def scorePat(guess, code):
-    '''Generates a score for the given guess (List), as compared to the code (List)
-    b = correct integer and position, w = correct integer but incorrect position
-    Returns True if the guess matches the code exactly (4 'b's), otherwise False'''
-    b = 0  # Correct integer and position
-    w = 0  # Correct integer but wrong position
-    
+def scorePat(guess, code):	    
     codes= []
     guesses = []
     
