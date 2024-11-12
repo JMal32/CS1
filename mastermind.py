@@ -35,17 +35,17 @@ def getPat():
                 continue  # Ask again if input is invalid
 
             # Convert each character to an integer and validate the range
-            numbers = [int(num) for num in player_num]
-            if all(1 <= num <= 6 for num in numbers):
-                print(f"Proceeding with numbers: {numbers}")
-                return numbers  # Return the valid numbers to proceed
+            guess = [int(num) for num in player_num]
+            if all(1 <= num <= 6 for num in guess):
+                print(f"Proceeding with numbers: {guess}")
+                return guess  # Return the valid numbers to proceed
             else:
                 print("Error: Each number must be between 1 and 6.")
         
         except ValueError: # except command with ValueError will print that statement anytime anything other than an integer is entered.
             print("Error: Invalid input. Please enter four digits.")
 
-# Function to compare the guess with the code and provide feedback
+# Function to compare the guess with the code
 def scorePat(guess, code):
     b = 0
     w = 0	    
