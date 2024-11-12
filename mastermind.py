@@ -6,11 +6,17 @@ def main():
     if ans: # Don't need to put '== True' because it defaults to True unless otherwise specified
         print("Let's get started.")
         mypat = genCode()
+        total_b = 0 #Total score counter for black
+        total_w = 0 #Total score counter for white
+
         for i in range(1, 11):
             guess = getPat()
             b, w = scorePat(guess, mypat)
-            print(f"Your current score is: {b} b's and {w} w's")
-        
+            print(f"Your score for this guess is: {b} b's and {w} w's")
+            print(f"Your overall score so far is: {total_b} b's and {total_w} w's")
+            total_b += b
+            total_w += w
+
             if b == 4:
                 print("You won! My pattern was:", mypat)
                 break
