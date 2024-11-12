@@ -2,7 +2,6 @@ import random
 
 def main():
     ans = welcome()
-    blnWon = False
     if ans: # Don't need to put '== True' because it defaults to True unless otherwise specified
         print("Let's get started.")
         mypat = genCode()
@@ -12,7 +11,7 @@ def main():
         for i in range(1, 11):
             guess = getPat()
             b, w = scorePat(guess, mypat)
-            print(f"Your score for this guess is: {b} b's and {w} w's")
+            #print(f"Your score for this guess is: {b} b's and {w} w's")
             total_b += b
             total_w += w
             print(f"Your overall score so far is: {total_b} b's and {total_w} w's")
@@ -47,7 +46,9 @@ def getPat():
             print("Error: Invalid input. Please enter four digits.")
 
 # Function to compare the guess with the code and provide feedback
-def scorePat(guess, code):	    
+def scorePat(guess, code):
+    b = 0
+    w = 0	    
     codes= []
     guesses = []
     
@@ -62,10 +63,7 @@ def scorePat(guess, code):
         if num in codes:
             w += 1
             codes.remove(num)  # Remove to prevent double-counting
-    
-    # Print the score for feedback
-    print(f"Score for this turn: {b} 'b' and {w} 'w'")
-    
+        
     return b, w
 
 # Function to generate a random 4-digit code
