@@ -11,9 +11,9 @@ def main():
             b, w = scorePat(guess, mypat)
             print(f"Your current score is: {b} b's and {w} w's")
         
-        if b == 4:
-            print("You won! My pattern was:", mypat)
-            break
+            if b == 4:
+                print("You won! My pattern was:", mypat)
+                break
         else:
             print("You lost. It was inevitable, really...")
             print("The correct pattern was:", mypat)
@@ -37,7 +37,7 @@ def getPat():
             else:
                 print("Error: Each number must be between 1 and 6.")
         
-        except ValueError:
+        except ValueError: # except command with ValueError will print that statement anytime anything other than an integer is entered.
             print("Error: Invalid input. Please enter four digits.")
 
 # Function to compare the guess with the code and provide feedback
@@ -48,7 +48,6 @@ def scorePat(guess, code):
     b = 0  # Correct integer and position
     w = 0  # Correct integer but wrong position
     
-    # Track non-matching elements
     codes= []
     guesses = []
     
