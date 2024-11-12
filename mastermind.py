@@ -3,7 +3,7 @@ import random
 def main():
     ans = welcome()
     blnWon = False
-    if ans:
+    if ans: # Don't need to put '== True' because it defaults to True unless otherwise specified
         print("Let's get started.")
         mypat = genCode()
         for i in range(1, 11):
@@ -11,10 +11,12 @@ def main():
             b, w = scorePat(guess, mypat)
             print(f"Your current score is: {b} b's and {w} w's")
         
-        if blnWon:
+        if b == 4:
             print("You won! My pattern was:", mypat)
+            break
         else:
             print("You lost. It was inevitable, really...")
+            print("The correct pattern was:", mypat)
 
 # Function to get the player's guess
 def getPat():
@@ -65,8 +67,7 @@ def scorePat(guess, code):
     # Print the score for feedback
     print(f"Score: {b} 'b' and {w} 'w'")
     
-    # Return True if the player has won (4 correct positions), otherwise False
-    return b == 4
+    return b, w
 
 # Function to generate a random 4-digit code
 def genCode():
@@ -90,5 +91,5 @@ def welcome():
             print("Error: Please enter 'y' or 'n'.")
 
 
-if __name__ == __main__:
+if __name__ == "__main__":
     main()
