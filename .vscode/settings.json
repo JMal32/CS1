@@ -1,0 +1,14 @@
+{
+
+    "name": "fuzzy zebra",
+  
+    "settings": {
+  
+      "editor.fontFamily": "JetBrains Mono",
+      "editor.fontLigatures": true,
+  
+    }
+  
+
+  
+}
