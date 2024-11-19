@@ -24,11 +24,15 @@ def main():
             print("The correct pattern was:", mypat)
 
 # Function to get the player's guess
-def getPat():
+def getPat(typ=0):
+    # changing the prompt based on the type of player with this loop
+    if typ == 0:
+        prompt = "Enter your guess as four numbers between 1 and 6 (no spaces): "
+    else:
+        prompt = "Enter your code as four numbers between 1 and 6 (no spaces): "
     while True:
         try:
-            player_num = input("Enter your guess as four numbers between 1 and 6 (no spaces): ")
-            
+            player_num = input(prompt)
             # Check if the input is exactly four digits long and consists only of digits
             if len(player_num) != 4 or not player_num.isdigit():
                 print("Error: You must enter exactly four digits.")
@@ -86,6 +90,17 @@ def welcome():
             return False
         else:
             print("Error: Please enter 'y' or 'n'.")
+
+# Function to get the player's role
+def getRole():
+    while True:
+        role = input("Would you like to be the code maker or code breaker? Enter 'm' for maker or 'b' for breaker: ").lower()
+        if role == "m":
+            return "maker"
+        elif role == "b":
+            return "breaker"
+        else:
+            print("Error: Please enter 'm' or 'b'.")
 
 
 if __name__ == "__main__":
