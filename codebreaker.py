@@ -50,19 +50,19 @@ def getPat(typ=0):
             print("Error: Invalid input. Please enter four digits.")
 
 # Function to compare the guess with the code
-def scorePat(guess, code):
+def getScore(guess, seekrit):
     b = 0
     w = 0	    
     codes= []
     guesses = []
     
-    for c, g in zip(code, guess):
+    for c, g in zip(seekrit, guess):
         if c == g:
             b += 1
         else:
             codes.append(c)
             guesses.append(g)
-    
+            
     for num in guesses:
         if num in codes:
             w += 1
@@ -102,6 +102,22 @@ def getRole():
         else:
             print("Error: Please enter 'm' or 'b'.")
 
+def humanScores(guess, seekrit):
+    correct_b, correct_w = getScore(guess, seekrit)
+    while True:
+        try:
+            print(f"Computer's guess: {guess}")
+            print("Please score the computer's guess.")
+            b = int(input("Enter the number of black points: "))
+            w = int(input("Enter the number of white points: "))
+            
+            if b == correct_b and w == correct_w:
+                return b, w
+            else:
+                 print(f"Incorrect score! Are you sure it's not: {correct_b} b and {correct_w} w?")
+                 print("Please try again.")
+        except ValueError:
+            print("Invalid input. Please enter integers for black and white points.")
 
 if __name__ == "__main__":
     main()
