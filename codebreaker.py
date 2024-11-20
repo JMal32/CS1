@@ -3,26 +3,44 @@ import random
 def main():
     ans = welcome()
     if ans: # Don't need to put '== True' because it defaults to True unless otherwise specified
-        print("Let's get started.")
-        mypat = genCode()
-        total_b = 0 #Total score counter for black
-        total_w = 0 #Total score counter for white
+        role = getRole()
+        if role == "breaker":
+            print("You are the CodeBreaker. Let's get started.")
+            mypat = genCode()
+            total_b = 0 #Total score counter for black
+            total_w = 0 #Total score counter for white
 
-        for i in range(1, 11):
-            guess = getPat()
-            b, w = scorePat(guess, mypat)
-            print(f"Your score for this guess is: {b} b's and {w} w's")
-            total_b += b
-            total_w += w
-            print(f"Your overall score so far is: {total_b} b's and {total_w} w's")
+            for i in range(1, 11):
+                guess = getPat()
+                b, w = getScore(guess, mypat)
+                print(f"Your score for this guess is: {b} b's and {w} w's")
+                total_b += b
+                total_w += w
+                print(f"Your overall score so far is: {total_b} b's and {total_w} w's")
 
-            if b == 4:
-                print("You won! My pattern was:", mypat)
-                break
+                if b == 4:
+                    print("You won! My pattern was:", mypat)
+                    break
+            else:
+                print("You lost. It was inevitable, really...")
+                print("The correct pattern was:", mypat)
         else:
-            print("You lost. It was inevitable, really...")
-            print("The correct pattern was:", mypat)
-
+            print("You are the CodeMaker. Let's get started.")
+            secret_code = getPat(typ=1)
+            guesslist = []
+            scoreslist = []
+            for i in range(1, 11):
+                comp_guess = CompGuess(guesslist, scoreslist)
+                print(f"Computer's guess {i}: {comp_guess}")
+                b, w = humanScores(comp_guess, secret_code)
+                guesslist.append(comp_guess)
+                scoreslist.append((b, w))
+                if b == 4:
+                    print("I won! This is why AI will overtake humanity.")
+                    break
+            else: # If the loop completes without breaking, the computer lost
+                print("I lost. You are the superior being.")
+                print("The correct pattern was:", secret_code)
 # Function to get the player's guess
 def getPat(typ=0):
     # changing the prompt based on the type of player with this loop
@@ -118,6 +136,33 @@ def humanScores(guess, seekrit):
                  print("Please try again.")
         except ValueError:
             print("Invalid input. Please enter integers for black and white points.")
+
+def CompGuess(guesslist, scoreslist):
+    if not guesslist:  # If no prior guesses, make a random guess
+        return [random.randint(1, 6) for _ in range(4)]
+
+    # I just put all of the guesses into a list variable nested at the bottom of those for loops
+    for a in range(1, 7):
+        for b in range(1, 7):
+            for c in range(1, 7):
+                for d in range(1, 7):
+                    potential_guess = [a, b, c, d]
+                    
+                    # Check against all previous guesses
+                    valid = True
+                    for i in range(len(guesslist)):
+                        prev_guess = guesslist[i]
+                        prev_b, prev_w = scoreslist[i]
+                        
+                        # Compare the potential guess with previous guesses
+                        test_b, test_w = getScore(potential_guess, prev_guess)
+                        if (test_b != prev_b) or (test_w != prev_w):
+                            valid = False
+                            break
+                    
+                    # If consistent, return this as the new guess
+                    if valid:
+                        return potential_guess
 
 if __name__ == "__main__":
     main()
