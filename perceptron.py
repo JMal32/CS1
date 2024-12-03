@@ -28,14 +28,15 @@ class perceptron:
 
                 if (mdl > 0 and truth > 0) or (mdl < 0 and truth < 0):
                     numCorrect += 1
-                elif mdl * truth < 0:
-                    self.c1 += 1
-                    self.c2 += xi
-                    self.c3 += yi
                 else:
-                    self.c1 -= 1
-                    self.c2 -= xi
-                    self.c3 -= yi
+                    if truth > 0:
+                        self.c1 += 1
+                        self.c2 += xi
+                        self.c3 += yi
+                    else:
+                        self.c1 -= 1
+                        self.c2 -= xi
+                        self.c3 -= yi
 
-                print(f"Updated coefficients: {self.c1}, {self.c2}, {self.c3}")
+                    print(f"Updated coefficients: c1={self.c1}, c2={self.c2}, c3={self.c3}")
                 
