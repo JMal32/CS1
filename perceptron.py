@@ -4,7 +4,7 @@ class perceptron:
     def __init__(self, x, y):
         self.c1 = 0
         self.c2 = 0
-        self.c2 = 0
+        self.c3 = 0
         self.x = []
         self.y = []
         self.truth = []
