@@ -19,7 +19,7 @@ class Perceptron:
                     self.truth.append(int(data[2]))
         except FileNotFoundError:
             print(f"Error: Could not find file {filename}")
-        except:
+        except: #Covers any other generic errors that might pop up
             print("Error: There was a problem reading the file.")
 
     def trainPerceptron(self):
@@ -53,6 +53,11 @@ class Perceptron:
         # Print the final coefficients and the linear equation in y = mx + b form
         print(f"Final coefficients: c1={self.c1}, c2={self.c2}, c3={self.c3}")
         print(f"Linear equation: y = {self.c2}x + {self.c3}")
+
     def test(gradeNumerator, gradeDenominator:
              # uses perceptron object's final c-coefficients to determine a boolean result from the model-equation
+             if gradeNumerator > gradeDenominator:
+                 return True
+             
+
              
