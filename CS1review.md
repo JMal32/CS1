@@ -28,3 +28,5 @@
 ## OO Design
 * objperceptron
 * Overloading is the term used for the methods
+
+# Remember he will ask to build an object. Know how to build a class object like a die or fractions
