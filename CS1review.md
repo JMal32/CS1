@@ -12,8 +12,19 @@
 ## Data Structures
 * List
 * Tuple
-*Dictionary
+* Dictionary
 
-## 
+## Functions (def)
+* Default Values 
+* Recursive Functions - Function that calls itself within that function
 
+## Boolean Operators, Expressions
+* AND, OR, NOT are the three boolean operators
+* File Input/Output
 
+## Objects (class)
+* Methods
+
+## OO Design
+* objperceptron
+* Overloading is the term used for the methods
