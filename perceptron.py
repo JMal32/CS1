@@ -1,10 +1,10 @@
 
 
 class Perceptron:
-    def __init__(self, x, y):
-        self.c1 = 0
-        self.c2 = 0
-        self.c3 = 0
+    def __init__(self, c1=0, c2=0, c3=0):
+        self.c1 = c1
+        self.c2 = c2
+        self.c3 = c3
         self.x = []
         self.y = []
         self.truth = []
@@ -54,10 +54,17 @@ class Perceptron:
         print(f"Final coefficients: c1={self.c1}, c2={self.c2}, c3={self.c3}")
         print(f"Linear equation: y = {self.c2}x + {self.c3}")
 
-    def test(gradeNumerator, gradeDenominator:
-             # uses perceptron object's final c-coefficients to determine a boolean result from the model-equation
-             if gradeNumerator > gradeDenominator:
-                 return True
+    def test(self, gradeNumerator, gradeDenominator):
+        # uses perceptron object's final c-coefficients to determine a boolean result from the model-equation
+        if gradeDenominator == 0:
+             return False
+             
+        x = gradeNumerator
+        y = gradeDenominator
+             
+        mdl = self.c1 + self.c2 * x + self.c3 * y
+             
+        return mdl > 0
              
 
              
