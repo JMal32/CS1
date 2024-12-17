@@ -1,4 +1,4 @@
-
+import os
 
 class Perceptron:
     def __init__(self, c1=0, c2=0, c3=0):
@@ -12,11 +12,13 @@ class Perceptron:
     def loadData(self, filename):
         try: #Added error handling for the file with try/except
             with open(filename, 'r') as f:
+                next(f) # This skips the first line of the file because it is a header and was causing file read errors that were giving me nightmares...
                 for line in f:
                     data = line.strip().split(',')
                     self.x.append(float(data[0]))
                     self.y.append(float(data[1]))
                     self.truth.append(int(data[2]))
+                print(f"Succesfully loaded {len(self.x)} records from {filename}")
         except FileNotFoundError:
             print(f"Error: Could not find file {filename}")
         except: #Covers any other generic errors that might pop up
@@ -55,9 +57,12 @@ class Perceptron:
     def printResults(self):
         # Print the final coefficients and the linear equation in y = mx + b form
         print(f"Final coefficients: c1={self.c1}, c2={self.c2}, c3={self.c3}")
-        print(f"Linear equation: y = {self.c2}x + {self.c3}")
-        print(f"Slope-intercept form: y = {self.c2/self.c3}x + {self.c1/self.c3}")
-
+        print(f"Raw linear equation: ({self.c3})y + ({self.c2})x + ({self.c1}) = 0")
+        # Add error handling for division by zero
+        try:
+           print(f"Slope-intercept form: y = {-self.c2/self.c3}x + {-self.c1/self.c3}")
+        except ZeroDivisionError:
+           print("Cannot convert to slope-intercept form (division by zero)")
     def test(self, gradeNumerator, gradeDenominator):
         # uses perceptron object's final c-coefficients to determine a boolean result from the model-equation
         if gradeDenominator == 0:
@@ -81,7 +86,7 @@ def main():
     
     #Testing each
     for p, name in zip(perceptrons, names):
-        print(f"\nTesting grades:")
+        print(f"\nTesting grades:{name}")
         p.loadData("percepGrades.csv")
         p.trainPerceptron()
         p.printResults()
